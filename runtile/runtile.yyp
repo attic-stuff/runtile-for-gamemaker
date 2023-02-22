@@ -1,0 +1,42 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.6",
+  "name": "runtile",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sets","folderPath":"folders/sets.yy","order":4,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sprites","folderPath":"folders/sprites.yy","order":3,},
+  ],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "MetaData": {
+    "IDEVersion": "2023.1.1.62",
+  },
+  "resources": [
+    {"id":{"name":"runtile","path":"scripts/runtile/runtile.yy",},"order":0,},
+    {"id":{"name":"gridset","path":"tilesets/gridset/gridset.yy",},"order":1,},
+    {"id":{"name":"wangset","path":"tilesets/wangset/wangset.yy",},"order":2,},
+    {"id":{"name":"object","path":"objects/object/object.yy",},"order":2,},
+    {"id":{"name":"gridsprite","path":"sprites/gridsprite/gridsprite.yy",},"order":0,},
+    {"id":{"name":"blobset","path":"tilesets/blobset/blobset.yy",},"order":0,},
+    {"id":{"name":"blobsprite","path":"sprites/blobsprite/blobsprite.yy",},"order":1,},
+    {"id":{"name":"marchingsquaresprite","path":"sprites/marchingsquaresprite/marchingsquaresprite.yy",},"order":3,},
+    {"id":{"name":"font","path":"fonts/font/font.yy",},"order":5,},
+    {"id":{"name":"wangsprite","path":"sprites/wangsprite/wangsprite.yy",},"order":2,},
+    {"id":{"name":"marchingsquareset","path":"tilesets/marchingsquareset/marchingsquareset.yy",},"order":3,},
+    {"id":{"name":"bedroom","path":"rooms/bedroom/bedroom.yy",},"order":1,},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"bedroom","path":"rooms/bedroom/bedroom.yy",},},
+  ],
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}
