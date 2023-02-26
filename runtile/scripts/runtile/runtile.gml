@@ -7,25 +7,27 @@
  * @param {real} height the height of the tilemap source
  * @returns {real}
  */
-function runtile_fetch_marchingsquare(map, x, y, width, height) {
-	static table = [ 0b0000, 0b1111, 0b1101, 0b1110,
-					 0b1100, 0b1011, 0b1001, 0b1010,
-					 0b1000, 0b0111, 0b0101, 0b0110,
-					 0b0100, 0b0011, 0b0001, 0b0010
-					];
-	static corners = [ 0b0000, 0b1111, 0b1011, 0b0111,
-				       0b0011, 0b1101, 0b1001, 0b0101,
-					   0b0001, 0b1110, 0b1010, 0b0110,
-					   0b0010, 0b1100, 0b1000, 0b0100
-					 ];	 
+function runtile_fetch_corner(map, x, y, width, height) {
+	static table = [ -1, 15, 13, 14, 12, 11, 9, 10, 8, 7, 5, 6, 4, 3, 1, 2, 0 ];
+	static corners = [ -1,
+		0b1111, 0b1011, 0b0111, 0b0011, 
+		0b1101, 0b1001, 0b0101, 0b0001,
+		0b1110, 0b1010, 0b0110, 0b0010, 
+		0b1100, 0b1000, 0b0100, 0b0000
+	];
 	var e = clamp(x + 1, 0, width);
 	var n = clamp(y - 1, 0, height);
 	var w = clamp(x - 1, 0, width);
 	var s = clamp(y + 1, 0, height);
-	return array_get_index(table, (((corners[tilemap_get(map, e, n) % 16] & 0b0010) != 0b0) << 0) +
-								  (((corners[tilemap_get(map, w, n) % 16] & 0b0001) != 0b0) << 1) + 
-								  (((corners[tilemap_get(map, w, s) % 16] & 0b1000) != 0b0) << 2) +
-								  (((corners[tilemap_get(map, e, s) % 16] & 0b0100) != 0b0) << 3));
+	var ne = tilemap_get(map, e, n) % 16;
+	ne = (corners[(ne == 0 ? 16 : ne)] & 0b0010) != 0;
+	var nw = tilemap_get(map, w, n) % 16;
+	nw = (corners[(nw == 0 ? 16 : nw)] & 0b0001) != 0;	
+	var sw = tilemap_get(map, w, s) % 16;
+	sw = (corners[(sw == 0 ? 16 : sw)] & 0b1000) != 0;	
+	var se = tilemap_get(map, e, s) % 16;
+	se = (corners[(se == 0 ? 16 : se)] & 0b0100) != 0;	
+	return array_get_index(table, (ne * 1) + (nw * 2) + (sw * 4) + (se * 8));
 }
 
 /**
@@ -38,12 +40,12 @@ function runtile_fetch_marchingsquare(map, x, y, width, height) {
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_autotile_marchingsquare(map, x, y, width, height, mutate = false, varieties = 2) {
+function runtile_autotile_corner(map, x, y, width, height, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
 	for (var i = 1; i < 9; i++) {
 		var tx = x + neighborhood[i][0];
 		var ty = y + neighborhood[i][1];
-		tilemap_set(map, runtile_fetch_marchingsquare(map, tx, ty, width, height) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
+		tilemap_set(map, runtile_fetch_corner(map, tx, ty, width, height) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
 	}
 }
 
@@ -58,18 +60,12 @@ function runtile_autotile_marchingsquare(map, x, y, width, height, mutate = fals
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_marchingsquare_update(map, x, y, width, height, clear = false, mutate = false, varieties = 2) {
+function runtile_update_corner(map, x, y, width, height, clear = false, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
-	if (clear = false) {
-		for (var i = 0; i < 9; i++) {
-			tilemap_set(map, 1 + (mutate * (irandom(varieties - 1) * 16)), x + neighborhood[i][0], y + neighborhood[i][1]);
-		}
-	} else {
-		for (var i = 0; i < 9; i++) {
-			tilemap_set(map, 0, x + neighborhood[i][0], y + neighborhood[i][1]);
-		}
+	for (var i = 0; i < 9; i++) {
+		tilemap_set(map, clear ? 16 : 1, x + neighborhood[i][0], y + neighborhood[i][1]);
 	}
-	runtile_autotile_marchingsquare(map, x, y, width, height, mutate, varieties);
+	runtile_autotile_corner(map, x, y, width, height, mutate, varieties);
 }
 
 /**
@@ -80,22 +76,13 @@ function runtile_marchingsquare_update(map, x, y, width, height, clear = false, 
  * @param {real} y the y coordinate of the cell to evaluate
  * @returns {real}
  */ 
-function runtile_fetch_wang(map, x, y) {
-	//decimal
-	//static table = [ -1, 0, 15, 1, 2, 4, 8, 5, 10, 11, 13, 14, 7, 9, 3, 6, 12];
-	//binary
-	static table = [ -1, 
-		0b0000, 0b1111, 0b0001, 0b0010,
-		0b0100, 0b1000, 0b0101, 0b1010,
-		0b1011, 0b1101, 0b1110, 0b0111,
-		0b1001, 0b0011, 0b0110, 0b1100
-	];
-	
+function runtile_fetch_edge(map, x, y) {
+	static table = [ -1, 0, 15, 1, 2, 4, 8, 5, 10, 11, 13, 14, 7, 9, 3, 6, 12 ];
 	var e = tilemap_get(map, x + 1, y) > 0;
 	var n = tilemap_get(map, x, y - 1) > 0;
 	var w = tilemap_get(map, x - 1, y) > 0;
 	var s = tilemap_get(map, x, y + 1) > 0;
-	return array_get_index(table, (e << 0) + (n << 1) + (w << 2) + (s << 3));
+	return array_get_index(table, (e * 1) + (n * 2) + (w * 4) + (s * 8));
 }
 
 /**
@@ -106,13 +93,13 @@ function runtile_fetch_wang(map, x, y) {
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_autotile_wang(map, x, y, mutate = false, varieties = 2) {
+function runtile_autotile_edge(map, x, y, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
 	for (var i = 0; i < 9; i++) {
 		var tx = x + neighborhood[i][0];
 		var ty = y + neighborhood[i][1];
 		if (tilemap_get(map, tx, ty) > 0) {
-			tilemap_set(map, runtile_fetch_wang(map, tx, ty) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
+			tilemap_set(map, runtile_fetch_edge(map, tx, ty) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
 		}
 	}
 }
@@ -126,11 +113,9 @@ function runtile_autotile_wang(map, x, y, mutate = false, varieties = 2) {
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_wang_update(map, x, y, clear = false, mutate = false, varieties = 2) {
-	static offset = 16;
-	var set = clear ? 0 : 1 + (mutate * (irandom(varieties - 1) * offset));
-	tilemap_set(map, set, x, y);
-	runtile_autotile_wang(map, x, y, mutate, varieties);
+function runtile_update_edge(map, x, y, clear = false, mutate = false, varieties = 2) {
+	tilemap_set(map, clear ? 0 : 1, x, y);
+	runtile_autotile_edge(map, x, y, mutate, varieties);
 };
 
 /**
@@ -140,29 +125,27 @@ function runtile_wang_update(map, x, y, clear = false, mutate = false, varieties
  * @param {real} x the x coordinate of the cell to evaluate
  * @param {real} y the y coordinate of the cell to evaluate
  */
-function runtile_fetch_blob_tile(map, x, y) {
-	static table = [ -1,
-		0b11110111, 0b11111101, 0b11110101, 0b01111111,
-		0b01110111, 0b01111101, 0b01110101, 0b11011111,
-		0b11010111, 0b11011101, 0b11010101, 0b01011111,
-		0b01010111, 0b01011101, 0b01010101, 0b11000111,
-		0b11000101, 0b01000111, 0b01000101, 0b11110001,
-		0b01110001, 0b11010001, 0b01010001, 0b01111100,
-		0b01011100, 0b01110100, 0b01010100, 0b00011111,
-		0b00010111, 0b00011101, 0b00010101, 0b01000100,
-		0b00010001, 0b11000001, 0b01000001, 0b01110000,
-		0b01010000, 0b00011100, 0b00010100, 0b00000111,
-		0b00000101, 0b01000000, 0b00000001, 0b00000100,
-		0b00010000, 0b00000000, 0b11111111
+function runtile_fetch_blob(map, x, y) {
+	static table = [
+		 -1, 247, 253, 245, 127, 119, 125, 117,
+		223, 215, 221, 213,  95,  87,  93,  85,
+		199, 197,  71,  69, 241, 113, 209,  81,
+		124,  92, 116,  84,  31,  23,  29,  21,
+		 68,  17, 193,  65, 112,  80,  28,  20,
+		  7,   5,  64,   1,   4,  16,   0, 255
 	];
-	var e = tilemap_get(map, x + 1, y) > 0;
-	var ne = tilemap_get(map, x + 1, y - 1) > 0;
-	var n = tilemap_get(map, x, y - 1) > 0;
-	var nw = tilemap_get(map, x - 1, y - 1) > 0;
-	var w = tilemap_get(map, x - 1, y) > 0;
-	var sw = tilemap_get(map, x - 1, y + 1) > 0;
-	var s = tilemap_get(map, x, y + 1) > 0;
-	var se = tilemap_get(map, x + 1, y + 1) > 0;
+	var r = x + 1;
+	var u = y - 1;
+	var l = x - 1;
+	var d = y + 1;
+	var e = tilemap_get(map, r, y) > 0;
+	var ne = tilemap_get(map, r, u) > 0;
+	var n = tilemap_get(map, x, u) > 0;
+	var nw = tilemap_get(map, l, u) > 0;
+	var w = tilemap_get(map, l, y) > 0;
+	var sw = tilemap_get(map, l, d) > 0;
+	var s = tilemap_get(map, x, d) > 0;
+	var se = tilemap_get(map, r, d) > 0;
 	return array_get_index(table, (e * 1) + ((ne & e & n) * 2) + (n * 4) + ((nw & w & n) * 8) + (w * 16) + ((sw & s & w) * 32) + (s * 64) + ((se & e & s) * 128));
 }
 
@@ -174,13 +157,13 @@ function runtile_fetch_blob_tile(map, x, y) {
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_autotile_blob_tile(map, x, y, mutate = false, varieties = 2) {
+function runtile_autotile_blob(map, x, y, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
 	for (var i = 0; i < 9; ++i) {
 		var tx = x + neighborhood[i][0];
 		var ty = y + neighborhood[i][1];
 		if (tilemap_get(map, tx, ty) > 0) {
-			tilemap_set(map, runtile_fetch_blob_tile(map, tx, ty) + (mutate * (irandom(varieties - 1) * 48)), tx, ty);
+			tilemap_set(map, runtile_fetch_blob(map, tx, ty) + (mutate * (irandom(varieties - 1) * 48)), tx, ty);
 		}
 	}
 }
@@ -194,13 +177,9 @@ function runtile_autotile_blob_tile(map, x, y, mutate = false, varieties = 2) {
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_blob_update(map, x, y, clear = false, mutate = false, varieties = 2) {
-	if (clear) {
-		tilemap_set(map, 0b00000000, x, y);
-	} else {
-		tilemap_set(map, 0b00101110 + (mutate * (irandom(varieties - 1) * 48)), x, y);
-	}
-	runtile_autotile_blob_tile(map, x, y, mutate, varieties);
+function runtile_update_blob(map, x, y, clear = false, mutate = false, varieties = 2) {
+	tilemap_set(map, clear ? 0 : 46 + (mutate * (irandom(varieties - 1) * 48)), x, y);
+	runtile_autotile_blob(map, x, y, mutate, varieties);
 }
 
 /**

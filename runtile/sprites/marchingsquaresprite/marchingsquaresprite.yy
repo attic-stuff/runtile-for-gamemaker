@@ -2,8 +2,8 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "marchingsquaresprite",
-  "bbox_bottom": 63,
-  "bbox_left": 8,
+  "bbox_bottom": 47,
+  "bbox_left": 0,
   "bbox_right": 127,
   "bbox_top": 0,
   "bboxMode": 0,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"e9affdd3-08f2-4b27-9af7-4c4b7a7dce68",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"eee369c5-1a27-425f-9315-e5387c458aef",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 64,
+  "height": 48,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"073df89f-79aa-490e-bbba-29eaf39a2a3e","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"a818ae97-84c9-493b-8a7b-4fad55d1f8da","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"e9affdd3-08f2-4b27-9af7-4c4b7a7dce68","path":"sprites/marchingsquaresprite/marchingsquaresprite.yy",},},},"Disabled":false,"id":"1ea4bf6e-83e2-4335-b45b-0d9e183663c0","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"eee369c5-1a27-425f-9315-e5387c458aef","path":"sprites/marchingsquaresprite/marchingsquaresprite.yy",},},},"Disabled":false,"id":"18145458-e278-44b1-bcb2-d2da39e68ab3","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

@@ -118,8 +118,8 @@
   "last": 0,
   "maintainGms1Font": false,
   "parent": {
-    "name": "runtile",
-    "path": "runtile.yyp",
+    "name": "yoots",
+    "path": "folders/yoots.yy",
   },
   "pointRounding": 0,
   "ranges": [

@@ -3,7 +3,7 @@
   "resourceVersion": "1.0",
   "name": "marchingsquareset",
   "autoTileSets": [
-    {"resourceType":"GMAutoTileSet","resourceVersion":"1.0","name":"autotile_1","closed_edge":true,"tiles":[
+    {"resourceType":"GMAutoTileSet","resourceVersion":"1.0","name":"autotile_1","closed_edge":false,"tiles":[
         1,
         2,
         3,
@@ -19,7 +19,7 @@
         13,
         14,
         15,
-        0,
+        16,
       ],},
   ],
   "macroPageTiles": {
@@ -27,7 +27,7 @@
     "SerialiseWidth": 0,
     "TileSerialiseData": [],
   },
-  "out_columns": 6,
+  "out_columns": 5,
   "out_tilehborder": 2,
   "out_tilevborder": 2,
   "parent": {
@@ -43,7 +43,7 @@
     "name": "Default",
     "path": "texturegroups/Default",
   },
-  "tile_count": 32,
+  "tile_count": 24,
   "tileAnimation": {
     "FrameData": [
       0,
@@ -70,14 +70,6 @@
       21,
       22,
       23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
     ],
     "SerialiseFrameCount": 1,
   },

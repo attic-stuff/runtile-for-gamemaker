@@ -2,15 +2,17 @@
   "FolderOrderSettings": [
     {"name":"sets","order":4,"path":"folders/sets.yy",},
     {"name":"sprites","order":3,"path":"folders/sprites.yy",},
+    {"name":"yoots","order":5,"path":"folders/yoots.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"gridset","order":1,"path":"tilesets/gridset/gridset.yy",},
     {"name":"wangset","order":2,"path":"tilesets/wangset/wangset.yy",},
+    {"name":"outline","order":1,"path":"shaders/outline/outline.yy",},
     {"name":"object","order":2,"path":"objects/object/object.yy",},
     {"name":"blobsprite","order":1,"path":"sprites/blobsprite/blobsprite.yy",},
     {"name":"marchingsquaresprite","order":3,"path":"sprites/marchingsquaresprite/marchingsquaresprite.yy",},
-    {"name":"font","order":5,"path":"fonts/font/font.yy",},
     {"name":"wangsprite","order":2,"path":"sprites/wangsprite/wangsprite.yy",},
+    {"name":"Script2","order":6,"path":"scripts/Script2/Script2.yy",},
     {"name":"marchingsquareset","order":3,"path":"tilesets/marchingsquareset/marchingsquareset.yy",},
     {"name":"bedroom","order":1,"path":"rooms/bedroom/bedroom.yy",},
   ],

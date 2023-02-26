@@ -4,12 +4,18 @@ display_set_gui_size(256, 256);
 alarm[0] = 1;
 
 blob = layer_tilemap_get_id("blob");
-wang = layer_tilemap_get_id("wang");
-marchingsquare = layer_tilemap_get_id("marchingsquare");
+edge = layer_tilemap_get_id("edge");
+corner = layer_tilemap_get_id("corner");
+grid = layer_tilemap_get_id("grid");
 
-mwidth = tilemap_get_width(marchingsquare) - 1;
-mheight = tilemap_get_height(marchingsquare) - 1;
+
+mwidth = tilemap_get_width(corner) - 1;
+mheight = tilemap_get_height(corner) - 1;
+
 mode = 0;
+mutate = false;
 
 randomise();
 draw_set_font(font);
+
+ui = -1;

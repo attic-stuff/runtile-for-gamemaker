@@ -11,24 +11,24 @@ for (var i = 1; i < 4; i++) {
 
 if (mouse_check_button(mb_left)) {
 	if (mode == 0) {
-		runtile_marchingsquare_update(marchingsquare, tx, ty, mwidth, mheight);
+		runtile_update_corner(corner, tx, ty, mwidth, mheight, false, mutate, 2);
 	}
 	if (mode == 1) {
-		runtile_wang_update(wang, tx, ty)	
+		runtile_update_edge(edge, tx, ty)	
 	}
 	if (mode == 2) {
-		runtile_blob_update(blob, tx, ty);
+		runtile_update_blob(blob, tx, ty);
 	}
 }
 
 if (mouse_check_button(mb_right)) {
 	if (mode == 0) {
-		runtile_marchingsquare_update(marchingsquare, tx, ty, mwidth, mheight, true);
+		runtile_update_corner(corner, tx, ty, mwidth, mheight, true, mutate, 2);
 	}
 	if (mode == 1) {
-		runtile_wang_update(wang, tx, ty, true)	
+		runtile_update_edge(edge, tx, ty, true)	
 	}
 	if (mode == 2) {
-		runtile_blob_update(blob, tx, ty, true);
+		runtile_update_blob(blob, tx, ty, true);
 	}	
 }
