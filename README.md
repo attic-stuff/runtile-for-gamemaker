@@ -1,27 +1,41 @@
-<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/runtilelogo.gif"/></p>
-
 # runtile
 
-### runtime autotiling for gamemaker that comes in blob, edge, and marching square flavors
+### runtime autotiling for gamemaker that comes in blob, edge, and corner wang tile flavors
 
-how cool are tiles, right? you can use them for absolutely everything: cool city pathways, generating noise, storing data and pretty much every possible game development thing you could ever think of. they are just the best. in gamemaker, we usually use them for level making reasons in the room editor and the tile asset in gamemaker makes it easy by allowing you to create autotile brushes. the problem with these brushes is twofold, however: a) they only come in marching square and blob flavors and 2) there is no built-in way to use those tools at runtime.
+how damn cool are tiles, right? you can use them for pretty much everything in game development. levels, storing big data, procedurally generating yerself a gf. whatever cool thing you want to do, you can and probably use tiles or tileable data to do it.
 
-so if your game is about farming and you need hella dirt plots wherever your guy hits it with a shovel, then you have to make your own autotiling. the problem with having to make your own autotiling is also twofold: a) all of the tutorials online use confusing terms like bitmasking (tf?) and b) there is literally no tutorial on the internet to create an autotiling function that works the same way as gm's marching square set.
-
-so that's what runtile is for: its runtime autotiling. it can also mutate tiles as they are placed, which means it will choose a random variation of a tile to place if you want it to.
+long story short: gamemaker does not have runtime auto tiling. it has autotiling for 16-tile corner adjacent tiles and 47-tile blob adjacent tiles in the room editor. but not at runtime! and no tile mutation! and no 16-tile edge ajacent autotiling at all! well runtile is to those problems what wu tang is to the children. it includes functions for runtime autotiling and tile mutation.
 
 ### the rules
 
-**one**: there are some rules for this libary. the biggest rule is that it is immutable. it is built for speed, very very fast speeds, so it relies heavily on incomprehensible code. the first rule is that the system is hardcoded. it expects your tiles to be in in a specific order to work. this doesnt mean your tilesets can only have the autotiling tiles on them, it just means that your autotile tiles have to be the first tiles on the tileset and they have to be in a specific order. and if you are using the mutate functionality, they need to follow the initial tiles. so if your tileset is a dirt path and a bunch of cool castle stuff then the cool castle stuff needs to comes _after_ the dirt path tiles.
+**rule 1**: you must be using gamemaker version 2023.1 and higher. anything older than that does not work with this*.
 
-**two**: runtile supports three different autotiling layouts. all three of them are types of wang tiles, but in the interest of being able to tell the difference between them lets call them **blob**, **marching square**, and **edge** layouts.
+**rule 2**: pretty much all autotiling methods rely on the tiles being in a specific order, and runtile is no different. you will need to use the reference templates to make sure these are correct.
 
-| eample                                                       | info                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/blob47template.png) | this is the 47-tile, **blob** style layout. it has 47 tiles that are contained, meaning that a single tile by itself is closed to itself on the corners. this is the layout i suggest for pretty much everything as it accounts for pretty much every possible situation. |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/corner16template.png) | this is the 16-tile, **marching square** style layout. this layout is open, in that a single tile by itself is not closed, but needs a tile on each side and corner to be closed. these tiles work corner to corner, unlike the other two that work face-to-face. like a good fist fight. |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/edge16template.png) | this is the 16-tile, **edge** style layout. its similar to the blob layout in that a single tile on its own is closed on all sides. it has less tiles though, and works in far fewer situations. its great for things like roads and tracks, rather than landscapes. |
+**rule 3**: mutated tiles also must come in a specific order, ``index + (varieties * tile count)``. that is to say, if you want a random variation on tile 2 in a 16-tile set, then the tiles for that type need to be at index 2, 18, 34, 40, etc etc.
 
-<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/setcomparison.png"/></p>
+### the tile layouts
 
-check out this comparison of the three types and make some observations: the edge layout does not have a solid interior tile so it creates columns at every corner, and the marching square layout does not extend to the edge of a tile. the edge layout really does best for paths and lines instead of shapes. blob style is just there, doing its job. the edge layout is great for roads and bad for parking lots, the blob layout can do roads and parking lots really well, and the marching square layout is great for like islands on an ocean or something. the marching square layout can sorta do what blob can with less tiles, at the cost of tilemap real estate
+check out this tilemap. it's a simple layout of tiles where the checkered tile solid and everything else is not solid.
+
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-identity.png"/></p>
+
+lets use runtile across the tilemap to see the results we get.
+
+#### 47-tile, blob layout
+
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-blob.png"/></p>
+
+this is the most common layout you will find for tilesets that do autotiling. it is a complete set, and will account for all possible edge and corner connections in any given situation. this layout is autotiled 1 tile at a time, meaning if you place a single tile it will be closed on all sides. the template for this layout assumes a top-down angle for tiles but this type of tiling is common in side view stuff too, like platformers.
+
+#### 16-tile, corner layout
+
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-corner.png"/></p>
+
+this is the second most common layout you will find among tilesets in the wild. unlike the blob layout, this type of tile is open. if you place a single tile, it will be open on all sides thus the auto tiling is done by placing nine tiles at once to close the center tile.
+
+#### 16-tile, edge layout
+
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-edge.png"/></p>
+
+this is the best tile layout for things like roads or train tracks or paths in general. this layout is closed, like the blob style, in that a single tile places is closed on all sides. this type of layout sucks if you need a large, filled in area. notice how the enclosed spaces appear to have columns? this is because the open tile for this set is used to connect corners.
