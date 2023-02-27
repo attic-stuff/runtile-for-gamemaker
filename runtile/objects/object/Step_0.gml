@@ -1,34 +1,38 @@
-var tx = mouse_x div 16;
-var ty = mouse_y div 16;
-
-
-for (var i = 1; i < 4; i++) {
-	if (keyboard_check_pressed(ord(string(i)))) {
-		mode = i - 1;
+for (var i = 0; i < 4; i++) {
+	if (keyboard_check_pressed(ord(string(i + 1)))) {
+		mode = i;
+		var list = [ corner, edge, blob, mutate ];
+		var index = array_get_index(stack, list[i]);
+		array_delete(stack, index, 1);
+		array_insert(stack, 0, list[i]);
 		break;
 	}
 }
 
-if (mouse_check_button(mb_left)) {
+if (mouse_check_button_pressed(mb_left)) {
+	var tx = mouse_x div 16;
+	var ty = mouse_y div 16;
 	if (mode == 0) {
-		runtile_update_corner(corner, tx, ty, false, mutate, 2);
-	}
-	if (mode == 1) {
+		runtile_update_corner(corner, tx, ty, false);
+	} else if (mode == 1) {
 		runtile_update_edge(edge, tx, ty)	
-	}
-	if (mode == 2) {
+	} else if (mode == 2) {
 		runtile_update_blob(blob, tx, ty);
+	} else {
+		runtile_update_corner(mutate, tx, ty, false, true, 4);
 	}
 }
 
-if (mouse_check_button(mb_right)) {
+if (mouse_check_button_pressed(mb_right)) {
+	var tx = mouse_x div 16;
+	var ty = mouse_y div 16;
 	if (mode == 0) {
-		runtile_update_corner(corner, tx, ty, true, mutate, 2);
-	}
-	if (mode == 1) {
+		runtile_update_corner(corner, tx, ty, true);
+	} else if (mode == 1) {
 		runtile_update_edge(edge, tx, ty, true)	
-	}
-	if (mode == 2) {
+	} else if (mode == 2) {
 		runtile_update_blob(blob, tx, ty, true);
-	}	
+	} else {
+		runtile_update_corner(mutate, tx, ty, true, true, 4);
+	}
 }

@@ -1,8 +1,8 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "cornersprite",
-  "bbox_bottom": 47,
+  "name": "mutatingcornersprite",
+  "bbox_bottom": 143,
   "bbox_left": 0,
   "bbox_right": 127,
   "bbox_top": 0,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"8159661c-ab9a-4942-848c-7535a657424f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"4368b010-b39e-468a-8f1f-5071725c7fcf",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 48,
+  "height": 144,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"9651f6be-ce61-4922-8fa3-fbccbfc71c45","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"e61e28ac-6f9f-4575-8d9e-640f4f93a86c","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -32,7 +32,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "cornersprite",
+    "name": "mutatingcornersprite",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"8159661c-ab9a-4942-848c-7535a657424f","path":"sprites/cornersprite/cornersprite.yy",},},},"Disabled":false,"id":"ac511ac4-de86-4636-b63e-2afca906fb08","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"4368b010-b39e-468a-8f1f-5071725c7fcf","path":"sprites/mutatingcornersprite/mutatingcornersprite.yy",},},},"Disabled":false,"id":"83595386-7fe0-444f-b579-9f7dd2afdb86","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

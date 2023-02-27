@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "edge",
+  "name": "edgeset",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 0,
