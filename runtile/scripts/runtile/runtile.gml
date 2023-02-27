@@ -123,13 +123,13 @@ function runtile_update_edge(map, x, y, clear = false, mutate = false, varieties
  * @param {real} y the y coordinate of the cell to evaluate
  */
 function runtile_fetch_blob(map, x, y) {
-	static table = [
-		  -1, 255, 247, 253, 245, 127, 119, 125,
+	static table = [ -1,
+		 255, 247, 253, 245, 127, 119, 125,
 		 117, 223, 215, 221, 213,  95,  87,  93,  
 		  85, 199, 197,  71,  69, 241, 113, 209,
 		  81, 124,  92, 116,  84,  31,  23,  29,
 		  21,  68,  17, 193,  65, 112,  80,  28,
-		  20,   7,   5,  64,   1,   4,  16,   0, 
+		  20,   7,   5,  64,   1,   4,  16,   0,
 	];
 	var r = x + 1;
 	var u = y - 1;
