@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "marchingsquareset",
+  "name": "cornerset",
   "autoTileSets": [
     {"resourceType":"GMAutoTileSet","resourceVersion":"1.0","name":"autotile_1","closed_edge":false,"tiles":[
         1,
@@ -35,8 +35,8 @@
     "path": "folders/sets.yy",
   },
   "spriteId": {
-    "name": "marchingsquaresprite",
-    "path": "sprites/marchingsquaresprite/marchingsquaresprite.yy",
+    "name": "cornersprite",
+    "path": "sprites/cornersprite/cornersprite.yy",
   },
   "spriteNoExport": true,
   "textureGroupId": {

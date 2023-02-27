@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "wangset",
+  "name": "edge",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 0,
@@ -16,8 +16,8 @@
     "path": "folders/sets.yy",
   },
   "spriteId": {
-    "name": "wangsprite",
-    "path": "sprites/wangsprite/wangsprite.yy",
+    "name": "edgesprite",
+    "path": "sprites/edgesprite/edgesprite.yy",
   },
   "spriteNoExport": true,
   "textureGroupId": {

@@ -12,9 +12,9 @@
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"corner","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":16,"SerialiseWidth":16,"TileCompressedData":[
--256,0,],"TileDataFormat":1,},"tilesetId":{"name":"marchingsquareset","path":"tilesets/marchingsquareset/marchingsquareset.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-256,0,],"TileDataFormat":1,},"tilesetId":{"name":"cornerset","path":"tilesets/cornerset/cornerset.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"edge","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":16,"SerialiseWidth":16,"TileCompressedData":[
--256,0,],"TileDataFormat":1,},"tilesetId":{"name":"wangset","path":"tilesets/wangset/wangset.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-256,0,],"TileDataFormat":1,},"tilesetId":{"name":"edge","path":"tilesets/edge/edge.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"blob","depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":16,"SerialiseWidth":16,"TileCompressedData":[
 -256,0,],"TileDataFormat":1,},"tilesetId":{"name":"blobset","path":"tilesets/blobset/blobset.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"grid","depth":300,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":16,"SerialiseWidth":16,"TileCompressedData":[
