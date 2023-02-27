@@ -18,10 +18,10 @@ long story short: gamemaker does not have runtime auto tiling. it has autotiling
 
 | example                                                      | what's up                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-identity.png) | **identity layout**<br />check out this tilemap. it's a simple layout of tiles where the checkered tile solid and everything else is not solid. lets use runtile across the tilemap to see the results we get. |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-blob.png) | **47-tile, blob layout**<br />this is the most common layout you will find for tilesets that do autotiling. it is a complete set, and will account for all possible edge and corner connections in any given situation. this layout is autotiled 1 tile at a time, meaning if you place a single tile it will be closed on all sides. the template for this layout assumes a top-down angle for tiles but this type of tiling is common in side view stuff too, like platformers. |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-corner.png) | **16-tile, corner layout**<br />this is the second most common layout you will find among tilesets in the wild. unlike the blob layout, this type of tile is open. if you place a single tile, it will be open on all sides thus the auto tiling is done by placing nine tiles at once to close the center tile. |
-| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/example-edge.png) | **16-tile, edge layout**<br />this is the best tile layout for things like roads or train tracks or paths in general. this layout is closed, like the blob style, in that a single tile places is closed on all sides. this type of layout sucks if you need a large, filled in area. notice how the enclosed spaces appear to have columns? this is because the open tile for this set is used to connect corners. |
+| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/example-identity.png) | **identity layout**<br />check out this tilemap. it's a simple layout of tiles where the checkered tile solid and everything else is not solid. lets use runtile across the tilemap to see the results we get. |
+| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/example-blob.png) | **47-tile, blob layout**<br />this is the most common layout you will find for tilesets that do autotiling. it is a complete set, and will account for all possible edge and corner connections in any given situation. this layout is autotiled 1 tile at a time, meaning if you place a single tile it will be closed on all sides. the template for this layout assumes a top-down angle for tiles but this type of tiling is common in side view stuff too, like platformers. |
+| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/example-corner.png) | **16-tile, corner layout**<br />this is the second most common layout you will find among tilesets in the wild. unlike the blob layout, this type of tile is open. if you place a single tile, it will be open on all sides thus the auto tiling is done by placing nine tiles at once to close the center tile. |
+| ![](https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/example-edge.png) | **16-tile, edge layout**<br />this is the best tile layout for things like roads or train tracks or paths in general. this layout is closed, like the blob style, in that a single tile places is closed on all sides. this type of layout sucks if you need a large, filled in area. notice how the enclosed spaces appear to have columns? this is because the open tile for this set is used to connect corners. |
 
 ### how to use this sucker
 
@@ -32,23 +32,28 @@ long story short: gamemaker does not have runtime auto tiling. it has autotiling
 #### core functions:
 
 | runtile_update_blob(map, x, y, [clear], [mutate], [varieties]) |
-| ------------------------------------------------------------ |
+| :----------------------------------------------------------- |
 | places a solid tile and autotiles it based on its neighbors using the blob layout. this mimics gamemaker's built in 47-tile functionality. |
 | **map**: the tilemap we're autotiling. this must be a tilemap layer id, not just a layer id.<br />**x**: the x _cell_ coordinate to place a tile at. that means not a pixel coordinate.<br />**y**: the y _cell_ coordinate to place a tile at. again: cell, not pixel.<br />**clear**: true/false option to clear a tile instead of place a tile.<br />**mutate**: true/false option to place a random variation of the tile.<br />**varieties**: the number of varieties of tiles in the tileset. |
 
 | runtile_update_corner(map, x, y, [clear], [mutate], [varieties]) |
-| ------------------------------------------------------------ |
+| :----------------------------------------------------------- |
 | places nine solid tiles then autotiles them based on neighbors using the corner layout. this mimics gamemaker's built in 16-tile autotile functionality. |
 | **map**: the tilemap we're autotiling. this must be a tilemap layer id, not just a layer id.<br />**x**: the x _cell_ coordinate to place a tile at. that means not a pixel coordinate.<br />**y**: the y _cell_ coordinate to place a tile at. again: cell, not pixel.<br />**clear**: true/false option to clear a tile instead of place a tile.<br />**mutate**: true/false option to place a random variation of the tile.<br />**varieties**: the number of varieties of tiles in the tileset. |
 
 | runtile_update_edge(map, x, y, [clear], [mutate], [varieties]) |
-| ------------------------------------------------------------ |
+| :----------------------------------------------------------- |
 | places a solid tile and autotiles it based on its neighbors using the corner layout. this layout is not present in gamemaker so do whatever you want idgaf. |
 | **map**: the tilemap we're autotiling. this must be a tilemap layer id, not just a layer id.<br />**x**: the x _cell_ coordinate to place a tile at. that means not a pixel coordinate.<br />**y**: the y _cell_ coordinate to place a tile at. again: cell, not pixel.<br />**clear**: true/false option to clear a tile instead of place a tile.<br />**mutate**: true/false option to place a random variation of the tile.<br />**varieties**: the number of varieties of tiles in the tileset. |
 
 | runtile_capture_region(map, x, y, width, height)             |
-| ------------------------------------------------------------ |
+| :----------------------------------------------------------- |
 | converts a region of a tilemap to a two-dimensional array. the is useful if you've mutated your tilemap and want it to be the same upon re-entering a room or something like that. |
 | **map**: the tilemap we're capturing from. this must be a tilemap layer id, not just a layer id.<br />**x**: the cell coordinate along the x axis to start the capture.<br />**y**: the cell coordinate along the y axis to start the capture.<br />**width**: width of the region.<br />**height**: height of the region. |
 | returns an array!                                            |
 
+### tileset templates
+
+you can find the aseprite templates here, and the png templates here. the aseprite templates have 3 layers each, the tile artwork layer, a layer with the gm tile indices, and a layer with the values used for the autotiling (which you can ignore unless you're dissecting this repo to learn how to do this yourself). the corner and blob templates are laid out to work in the same order as the built-in autotile templates. checking out this cool image below, you can see that the order you add each tile to the gamemaker template is the same order that they appear in the runtile templates.
+
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/layoutshowoff.png"/></p>
