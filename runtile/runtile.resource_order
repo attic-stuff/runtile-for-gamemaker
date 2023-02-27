@@ -14,7 +14,6 @@
     {"name":"blobsprite","order":1,"path":"sprites/blobsprite/blobsprite.yy",},
     {"name":"cornersprite","order":3,"path":"sprites/cornersprite/cornersprite.yy",},
     {"name":"edgesprite","order":2,"path":"sprites/edgesprite/edgesprite.yy",},
-    {"name":"Script2","order":7,"path":"scripts/Script2/Script2.yy",},
     {"name":"cornerset","order":3,"path":"tilesets/cornerset/cornerset.yy",},
     {"name":"bedroom","order":1,"path":"rooms/bedroom/bedroom.yy",},
   ],

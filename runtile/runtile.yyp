@@ -34,7 +34,6 @@
     {"id":{"name":"cornersprite","path":"sprites/cornersprite/cornersprite.yy",},"order":3,},
     {"id":{"name":"font","path":"fonts/font/font.yy",},"order":0,},
     {"id":{"name":"edgesprite","path":"sprites/edgesprite/edgesprite.yy",},"order":2,},
-    {"id":{"name":"Script2","path":"scripts/Script2/Script2.yy",},"order":7,},
     {"id":{"name":"cornerset","path":"tilesets/cornerset/cornerset.yy",},"order":3,},
     {"id":{"name":"bedroom","path":"rooms/bedroom/bedroom.yy",},"order":1,},
   ],

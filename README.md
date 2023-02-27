@@ -14,6 +14,8 @@ long story short: gamemaker does not have runtime auto tiling. it has autotiling
 
 **rule 3**: mutated tiles also must come in a specific order, ``index + (varieties * tile count)``. that is to say, if you want a random variation on tile 2 in a 16-tile set, then the tiles for that type need to be at index 2, 18, 34, 40, etc etc.
 
+**rule 4**: to see an example on how it works, download and check out the yyz.
+
 ### the tile layouts
 
 | example                                                      | what's up                                                    |
@@ -54,7 +56,7 @@ long story short: gamemaker does not have runtime auto tiling. it has autotiling
 
 ### tileset templates
 
-you can find the aseprite templates here, and the png templates here. the aseprite templates have 3 layers each, the tile artwork layer, a layer with the gm tile indices, and a layer with the values used for the autotiling (which you can ignore unless you're dissecting this repo to learn how to do this yourself). the corner and blob templates are laid out to work in the same order as the built-in autotile templates. checking out this cool image below, you can see that the order you add each tile to the gamemaker template is the same order that they appear in the runtile templates.
+you can find the templates in their respective folders. the aseprite templates have 3 layers each, the tile artwork layer, a layer with the gm tile indices, and a layer with the values used for the autotiling (which you can ignore unless you're dissecting this repo to learn how to do this yourself). the corner and blob templates are laid out to work in the same order as the built-in autotile templates. checking out this cool image below, you can see that the order you add each tile to the gamemaker template is the same order that they appear in the runtile templates.
 
 <p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/layoutshowoff.png"/></p>
 
@@ -63,3 +65,11 @@ you can find the aseprite templates here, and the png templates here. the asepri
 here is an example of a mutating tileset. it uses the corner layout with 4 variations to get a vibrant and varied tilemap! notice how the tileset, to the left of the animation, just repeats itself in order, but with variation.
 
 <p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/animatedmutation.gif"/></p>
+
+### faq
+
+**can i add tiles to my tileset, like besides the auto tiling ones?**
+yes! just make sure they come _after_ the autotiling tiles. for example, if you're using the corner layout make sure indices 0 through 16 are the autotiling tiles and then put whatever skulls or decorations you want after that.
+
+**how come this doesn't work with older versions of gm?**
+because it uses array_get_index, which is new to gm. if you're using the LTS version of gm, or an older monthly release, you can still use this with some work. work that i already did bro, there is a LTS yyz you can download and use the runtile stuff from it. a word of caution: the LTS version uses global ds lists. these lists do not clean themselves up, and shouldnt have to. however if use game_restart() or call the script asset those globals are defined in, you will need to clean them lists up.

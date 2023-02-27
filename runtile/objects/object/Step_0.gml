@@ -9,7 +9,7 @@ for (var i = 0; i < 4; i++) {
 	}
 }
 
-if (mouse_check_button_pressed(mb_left)) {
+if (mouse_check_button(mb_left)) {
 	var tx = mouse_x div 16;
 	var ty = mouse_y div 16;
 	if (mode == 0) {
@@ -23,7 +23,7 @@ if (mouse_check_button_pressed(mb_left)) {
 	}
 }
 
-if (mouse_check_button_pressed(mb_right)) {
+if (mouse_check_button(mb_right)) {
 	var tx = mouse_x div 16;
 	var ty = mouse_y div 16;
 	if (mode == 0) {
