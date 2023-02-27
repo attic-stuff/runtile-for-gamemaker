@@ -3,11 +3,9 @@
  * @param {id.TileMapElement} map the tilemap source
  * @param {real} x the x coordinate of the cell to evaluate
  * @param {real} y the y coordinate of the cell to evaluate
- * @param {real} width the width of the tilemap source
- * @param {real} height the height of the tilemap source
  * @returns {real}
  */
-function runtile_fetch_corner(map, x, y, width, height) {
+function runtile_fetch_corner(map, x, y) {
 	static table = [ -1, 15, 13, 14, 12, 11, 9, 10, 8, 7, 5, 6, 4, 3, 1, 2, 0 ];
 	static corners = [ -1,
 		0b1111, 0b1011, 0b0111, 0b0011, 
@@ -15,6 +13,9 @@ function runtile_fetch_corner(map, x, y, width, height) {
 		0b1110, 0b1010, 0b0110, 0b0010, 
 		0b1100, 0b1000, 0b0100, 0b0000
 	];
+	var width = tilemap_get_width(map) - 1;
+	var height = tilemap_get_height(map) - 1;
+	
 	var e = clamp(x + 1, 0, width);
 	var n = clamp(y - 1, 0, height);
 	var w = clamp(x - 1, 0, width);
@@ -35,17 +36,15 @@ function runtile_fetch_corner(map, x, y, width, height) {
  * @param {id.TileMapElement} map the tilemap source
  * @param {real} x center x cell coordinate of the 3x3 square
  * @param {real} y center y cell coordinate of the 3x3 square
- * @param {real} width the width of the tilemap source
- * @param {real} height the height of the tilemap source
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_autotile_corner(map, x, y, width, height, mutate = false, varieties = 2) {
+function runtile_autotile_corner(map, x, y, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
 	for (var i = 1; i < 9; i++) {
 		var tx = x + neighborhood[i][0];
 		var ty = y + neighborhood[i][1];
-		tilemap_set(map, runtile_fetch_corner(map, tx, ty, width, height) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
+		tilemap_set(map, runtile_fetch_corner(map, tx, ty) + (mutate * (irandom(varieties - 1) * 16)), tx, ty);
 	}
 }
 
@@ -54,18 +53,16 @@ function runtile_autotile_corner(map, x, y, width, height, mutate = false, varie
  * @param {id.TileMapElement} map the tilemap source
  * @param {real} x the x coordinate of the cell to evaluate
  * @param {real} y the y coordinate of the cell to evaluate
- * @param {real} width the width of the tilemap source
- * @param {real} height the height of the tilemap source
  * @param {bool} [clear] whether or not to clear the cell or set the cell
  * @param {bool} [mutate] whether or not to randomise the result
  * @param {real} [varieties] the number of varieties of tiles
  */
-function runtile_update_corner(map, x, y, width, height, clear = false, mutate = false, varieties = 2) {
+function runtile_update_corner(map, x, y, clear = false, mutate = false, varieties = 2) {
 	static neighborhood = [ [0,0], [1,0], [1,-1], [0,-1], [-1,-1], [-1,0], [-1,1], [0,1], [1,1] ];
 	for (var i = 0; i < 9; i++) {
 		tilemap_set(map, clear ? 16 : 1, x + neighborhood[i][0], y + neighborhood[i][1]);
 	}
-	runtile_autotile_corner(map, x, y, width, height, mutate, varieties);
+	runtile_autotile_corner(map, x, y, mutate, varieties);
 }
 
 /**
@@ -200,72 +197,3 @@ function runtile_update_blob(map, x, y, clear = false, mutate = false, varieties
 	}
 	return array;
  }
-	 
-/**
- * mirrors a rectangular region of a tilemap along the x axis. for edge/blob tiles only.
- * @param {id.TileMapElement} map the tilemap source
- * @param {real} x x position of the corner to begin the mirror
- * @param {real} y y position of the corner to begin the mirror
- * @param {real} width width of the region
- * @param {real} height height of the region
- */
-function runtile_mirror_region(map, x, y, width, height) {
-	var region = runtile_capture_region(map, x, y, width, height);
-	array_reverse_ext(region)
-	for (var i = 0; i < width; ++i) {
-		for (var j = 0; j < height; ++j) {
-			tilemap_set(map, region[i][j], x + i, y + j);
-		}
-	}
-}
-
-/**
- * flips a rectangular region of a tilemap along the y axis. for edge/blob tiles only.
- * @param {id.TileMapElement} map the tilemap source
- * @param {real} x x position of the corner to begin the flip
- * @param {real} y y position of the corner to begin the flip
- * @param {real} width width of the region
- * @param {real} height height of the region
- */
-function runtile_flip_region(map, x, y, width, height) {
-	var region = runtile_capture_region(map, x, y, width, height);
-	for (var i = 0; i < width; ++i) {
-		array_reverse_ext(region[i]);
-		for (var j = 0; j < height; ++j) {
-			tilemap_set(map, region[i][j], x + i, y + j);
-		}
-	}
-}
-
-/**
- * rotates a rectangular region of a tilemap counter-clockwise. for edge/blob tiles only.
- * @param {id.TileMapElement} map the tilemap source
- * @param {real} x x position of the corner to begin the flip
- * @param {real} y y position of the corner to begin the flip
- * @param {real} width width of the region
- * @param {real} height height of the region
- */
-function runtile_rotate_region(map, x, y, width, height) {
-	var region = runtile_capture_region(map, x, y, width, height);
-	for (var i = 0; i < width; i++) {
-		for (var j = 0; j < height; j++) {
-			tilemap_set(map, region[width - j - 1][i], x + i, y + j);
-		}
-	}
-}
-
-/**
- * mutates all tiles in a given region so that theyre a random version of their index
- * @param {id.TileMapElement} map the tilemap source
- * @param {real} x x position of the corner to begin the randomization
- * @param {real} y y position of the corner to begin the randomization
- * @param {real} width width of the region
- * @param {real} height height of the region
- */
-function runtile_mutate_region(map, x, y, width, height, varities, offset) {
-	for (var i = 0; i < width; i++) {
-		for (var j = 0; j < height; j++) {
-			tilemap_set(map, (tilemap_get(map, x + i, y + j) % offset) + (irandom(varities - 1) * offset), x + i, x +j);
-		}
-	}
-}

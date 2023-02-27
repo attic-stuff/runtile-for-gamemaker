@@ -11,7 +11,7 @@ for (var i = 1; i < 4; i++) {
 
 if (mouse_check_button(mb_left)) {
 	if (mode == 0) {
-		runtile_update_corner(corner, tx, ty, mwidth, mheight, false, mutate, 2);
+		runtile_update_corner(corner, tx, ty, false, mutate, 2);
 	}
 	if (mode == 1) {
 		runtile_update_edge(edge, tx, ty)	
@@ -23,7 +23,7 @@ if (mouse_check_button(mb_left)) {
 
 if (mouse_check_button(mb_right)) {
 	if (mode == 0) {
-		runtile_update_corner(corner, tx, ty, mwidth, mheight, true, mutate, 2);
+		runtile_update_corner(corner, tx, ty, true, mutate, 2);
 	}
 	if (mode == 1) {
 		runtile_update_edge(edge, tx, ty, true)	

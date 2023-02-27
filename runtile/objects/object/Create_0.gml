@@ -8,10 +8,6 @@ edge = layer_tilemap_get_id("edge");
 corner = layer_tilemap_get_id("corner");
 grid = layer_tilemap_get_id("grid");
 
-
-mwidth = tilemap_get_width(corner) - 1;
-mheight = tilemap_get_height(corner) - 1;
-
 mode = 0;
 mutate = false;
 
