@@ -73,3 +73,6 @@ yes! just make sure they come _after_ the autotiling tiles. for example, if you'
 
 **how come this doesn't work with older versions of gm?**
 because it uses array_get_index, which is new to gm. if you're using the LTS version of gm, or an older monthly release, you can still use this with some work. work that i already did bro, there is a LTS yyz you can download and use the runtile stuff from it. a word of caution: the LTS version uses global ds lists. these lists do not clean themselves up, and shouldnt have to. however if use game_restart() or call the script asset those globals are defined in, you will need to clean them lists up.
+
+**license?**
+you are free to use the runtile functions in whatever project you see fit. you can also redistribute the templates if u wanna. you cannot use the font or the mutated tiles for anything though.
