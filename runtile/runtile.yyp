@@ -1,0 +1,50 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.7",
+  "name": "runtile",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sets","folderPath":"folders/sets.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sprites","folderPath":"folders/sprites.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"yoots","folderPath":"folders/yoots.yy",},
+  ],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "LibraryEmitters": [],
+  "MetaData": {
+    "IDEVersion": "2023.11.1.129",
+  },
+  "resources": [
+    {"id":{"name":"runtile","path":"scripts/runtile/runtile.yy",},},
+    {"id":{"name":"gridset","path":"tilesets/gridset/gridset.yy",},},
+    {"id":{"name":"edgeset","path":"tilesets/edgeset/edgeset.yy",},},
+    {"id":{"name":"outline","path":"shaders/outline/outline.yy",},},
+    {"id":{"name":"object","path":"objects/object/object.yy",},},
+    {"id":{"name":"gridsprite","path":"sprites/gridsprite/gridsprite.yy",},},
+    {"id":{"name":"takefivesprite","path":"sprites/takefivesprite/takefivesprite.yy",},},
+    {"id":{"name":"mutatingcornersprite","path":"sprites/mutatingcornersprite/mutatingcornersprite.yy",},},
+    {"id":{"name":"takefiveset","path":"tilesets/takefiveset/takefiveset.yy",},},
+    {"id":{"name":"blobset","path":"tilesets/blobset/blobset.yy",},},
+    {"id":{"name":"mutatingcornerset","path":"tilesets/mutatingcornerset/mutatingcornerset.yy",},},
+    {"id":{"name":"blobsprite","path":"sprites/blobsprite/blobsprite.yy",},},
+    {"id":{"name":"cornersprite","path":"sprites/cornersprite/cornersprite.yy",},},
+    {"id":{"name":"font","path":"fonts/font/font.yy",},},
+    {"id":{"name":"edgesprite","path":"sprites/edgesprite/edgesprite.yy",},},
+    {"id":{"name":"cornerset","path":"tilesets/cornerset/cornerset.yy",},},
+    {"id":{"name":"bedroom","path":"rooms/bedroom/bedroom.yy",},},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"bedroom","path":"rooms/bedroom/bedroom.yy",},},
+  ],
+  "templateType": null,
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}

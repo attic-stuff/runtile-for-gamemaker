@@ -1,0 +1,22 @@
+{
+  "FolderOrderSettings": [
+    {"name":"sets","order":5,"path":"folders/sets.yy",},
+    {"name":"sprites","order":3,"path":"folders/sprites.yy",},
+    {"name":"yoots","order":6,"path":"folders/yoots.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"edgeset","order":2,"path":"tilesets/edgeset/edgeset.yy",},
+    {"name":"outline","order":1,"path":"shaders/outline/outline.yy",},
+    {"name":"object","order":2,"path":"objects/object/object.yy",},
+    {"name":"takefivesprite","order":5,"path":"sprites/takefivesprite/takefivesprite.yy",},
+    {"name":"mutatingcornersprite","order":4,"path":"sprites/mutatingcornersprite/mutatingcornersprite.yy",},
+    {"name":"takefiveset","order":5,"path":"tilesets/takefiveset/takefiveset.yy",},
+    {"name":"blobset","order":1,"path":"tilesets/blobset/blobset.yy",},
+    {"name":"mutatingcornerset","order":4,"path":"tilesets/mutatingcornerset/mutatingcornerset.yy",},
+    {"name":"blobsprite","order":1,"path":"sprites/blobsprite/blobsprite.yy",},
+    {"name":"cornersprite","order":3,"path":"sprites/cornersprite/cornersprite.yy",},
+    {"name":"edgesprite","order":2,"path":"sprites/edgesprite/edgesprite.yy",},
+    {"name":"cornerset","order":3,"path":"tilesets/cornerset/cornerset.yy",},
+    {"name":"bedroom","order":1,"path":"rooms/bedroom/bedroom.yy",},
+  ],
+}
