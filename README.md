@@ -70,13 +70,13 @@ long story short: gamemaker does not have runtime auto tiling. it has autotiling
 
 you can find the templates in their respective folders. the aseprite templates have 3 layers each, the tile artwork layer, a layer with the gm tile indices, and a layer with the values used for the autotiling (which you can ignore unless you're dissecting this repo to learn how to do this yourself). the corner and blob templates are laid out to work in the same order as the built-in autotile templates. checking out this cool image below, you can see that the order you add each tile to the gamemaker template is the same order that they appear in the runtile templates.
 
-<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/layoutshowoff.png"/></p>
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/master/examples/layoutshowoff.png"/></p>
 
 ### mutating tilesets
 
 here is an example of a mutating tileset. it uses the corner layout with 4 variations to get a vibrant and varied tilemap! notice how the tileset, to the left of the animation, just repeats itself in order, but with variation.
 
-<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/main/examples/animatedmutation.gif"/></p>
+<p align="center"><img src="https://github.com/attic-stuff/runtile-for-gamemaker/blob/master/examples/animatedmutation.gif"/></p>
 
 ### take five
 
